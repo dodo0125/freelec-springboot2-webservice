@@ -1,5 +1,6 @@
 package com.jojoldu.book.springboot.domain.posts;
 
+import com.jojoldu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import javax.persistence.Id;
 
 //Posts 클래스는 실제 DB table과 매칭될 클래스.(Entity 클래스라 지칭함)
 //JPA를 사용하면 DB데이터에 작업할 경우, 실제 쿼리를 날리기보단 이 Entity 클래스의 수정을 통해 작업함.
-public class Posts {
+public class Posts extends BaseTimeEntity {
     // @Id : table의 OK 필드
     @Id
     //@GeneratedValue : PK의 생성 규칙 나타냄, GenerationType.IDENTITY 옵션: auto_increment 해줌.
@@ -39,6 +40,11 @@ public class Posts {
         this.title = title ;
         this.content = content ;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 
 }
