@@ -1,11 +1,15 @@
 package com.jojoldu.book.springboot.web;
 
-import com.jojoldu.book.springboot.service.posts.PostsService;
+import com.jojoldu.book.springboot.service.PostsService;
+import com.jojoldu.book.springboot.web.dto.PostsListResponseDto;
 import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
 import com.jojoldu.book.springboot.web.dto.PostsSaveRequestDto;
 import com.jojoldu.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //final이 선언된 모든 필드를 인자값으로 하는 생성자를 RequiredArgsConstructor 롬복에서 대신 생성해줌
 @RequiredArgsConstructor
@@ -28,4 +32,16 @@ public class PostsApiController {
     public PostsResponseDto findById(@PathVariable Long id){
         return postsService.findById(id);
     }
+
+    @GetMapping("/api/v1/posts/list")
+    public List<PostsListResponseDto> findAll() {
+        return postsService.findAllDesc();
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id){
+        postsService.delete(id);
+        return id;
+    }
+
 }

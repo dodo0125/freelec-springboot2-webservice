@@ -3,9 +3,15 @@
 // Entity 클래스와 기본 Repository는 함께 움직여야하므로 도메인 PKG에서 함께 관리해야함.
 package com.jojoldu.book.springboot.domain.posts;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 // extends ~<,> : <Entity 클래스명, PK 타입> 상속
 public interface PostsRepository extends JpaRepository<Posts,Long>{
 
+    @Query("SELECT p FROM Posts p ORDER BY p.id DESC")
+    List<Posts> findAllDesc();
 }

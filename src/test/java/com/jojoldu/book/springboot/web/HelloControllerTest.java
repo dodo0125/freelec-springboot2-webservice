@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test ;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 //import org.springframework.test.context.junit4.SpringRunner; Junit5 때문에 SpringExtension으로 대체
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -21,9 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 //@RunWith(SpringRunner.class) Junit5 때문에 ExtendWith로 변경
 @ExtendWith(SpringExtension.class)
-
-@WebMvcTest
-//(controllers = HelloController.class)
+@WebMvcTest(controllers = HelloController.class)
 
 public class HelloControllerTest {
     @Autowired
